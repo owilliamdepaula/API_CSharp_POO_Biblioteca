@@ -2,16 +2,17 @@ namespace Biblioteca.Dominio;
 
 public abstract class ItemAcervo
 {
-    public ItemAcervo(string titulo, string autor)
+    protected ItemAcervo(string titulo, string autor)
     {
-        if(string.IsNullOrWhiteSpace(titulo)) {
+        if (string.IsNullOrWhiteSpace(titulo))
+        {
             throw new ExcecaoDominio("O título é obrigatório.");
         }
         Titulo = titulo;
         Autor = autor;
     }
-    public string Titulo { get; set; } = string.Empty;
-    public string Autor { get; set; } = string.Empty;
+    public string Titulo { get; private set; } = string.Empty;
+    public string Autor { get; private set; } = string.Empty;
     public bool Disponibilidade { get; private set; } = true;
 
     public abstract int PrazoDevolucao { get; }
@@ -21,5 +22,21 @@ public abstract class ItemAcervo
         return diasAtrasados >= 0 ? diasAtrasados * MultaDiaAtrasado : 0;
     }
 
+    public void MarcarComoDevolvido()
+    {
+        if (Disponibilidade)
+        {
+            throw new ExcecaoDominio("Não está emprestado");
+        }
+        Disponibilidade = true;
+    }
+    public void MarcarComoEmprestado()
+    {
+        if (!Disponibilidade)
+        {
+            throw new ExcecaoDominio("Não está emprestado");
+        }
+        Disponibilidade = false;
+    }
 
 }
