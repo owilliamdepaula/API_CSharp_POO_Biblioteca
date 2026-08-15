@@ -2,7 +2,7 @@
 
 Console.WriteLine("Hello, World!");
 
-ItemAcervo LivrodeEli = new Dvd("Livro de Eli", "Allen Hughes");
+ItemAcervo LivrodeEli = new Dvd("Livro de Eli", "Allen Hughes", default(ClassificacaoEtaria));
 
 ItemAcervo VocêéInsubstituível = new Livro("Você é Insubstituível", "Augusto Cury");
 
