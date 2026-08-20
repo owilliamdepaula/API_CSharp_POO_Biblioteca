@@ -16,24 +16,24 @@ public class Emprestimo
 
     private decimal? _multaCongelada;
 
-    
 
-    public Emprestimo(ItemAcervo item, Cliente cliente)
+
+    public Emprestimo(ItemAcervo item, Locador locador)
     {
-          if (!item.PodeSerEmprestadoPara(cliente))
+        if (!item.PodeSerEmprestadoPara(locador))
         {
-            throw new ExcecaoDominio("Cliente não pode pq é menor...");
+            throw new ExcecaoDominio("Impossível, cliente menor de idade!");
         }
 
-        if (cliente.EmprestimosAtivos.Count() >= 3)
+        if (locador.EmprestimosAtivos.Count() >= 3)
         {
-            throw new ExcecaoDominio("Explodiu o limite 3 itens emprestados.");
+            throw new ExcecaoDominio("Limite de 3 itens excedido!");
         }
         item.MarcarComoEmprestado();
         Item = item;
-        Cliente = cliente;
+        Locador = locador;
         PrazoLimite = DataEmprestimo.AddDays(item.PrazoDevolucao);
-        cliente.Emprestimos.Add(this);
+        locador.Emprestimos.Add(this);
 
     }
 
@@ -45,13 +45,12 @@ public class Emprestimo
             DateTime referencia = DataDevolucao ?? DateTime.Today;
             TimeSpan diasAtrasados = referencia - PrazoLimite;
             return diasAtrasados.Days;
-
         }
     }
     public void RegistrarDevolucao()
     {
         Item.MarcarComoDevolvido();
-         DataDevolucao = DateTime.Today;
+        DataDevolucao = DateTime.Today;
         _multaCongelada = Item.CalcularMulta(QtDiasAtrasados);
     }
 }
