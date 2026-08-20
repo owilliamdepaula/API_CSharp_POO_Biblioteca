@@ -10,10 +10,7 @@ public class Locador
         Nome = nome;
         DataNascimento = dataNascimento;
     }
-    public string Nome { get; }
 
-
-    public DateTime DataNascimento { get; }
     public int Idade
     {
         get
