@@ -11,9 +11,9 @@ ItemAcervo AVoltaDosQueNãoForam = new Dvd ("A volta dos que não foram", "Autor
 Divida.RegistrarDevolucao();
 
 
-Locador locador1 = new Cliente("João Silva", new DateTime(2005, 3, 15));
-Locador locador2 = new Cliente("Maria Santos", new DateTime(2000, 7, 22));
-Locador locador3 = new Cliente("Pedro Oliveira", new DateTime(2008, 11, 8));
+Locador locador1 = new Locador("João Silva", new DateTime(2005, 3, 15));
+Locador locador2 = new Locador("Maria Santos", new DateTime(2000, 7, 22));
+Locador locador3 = new Locador("Pedro Oliveira", new DateTime(2008, 11, 8));
 
 Emprestimo emprestimo = new Emprestimo(AArteDaGuerra, locador1);
 Emprestimo emprestimo1 = new Emprestimo(TriploX, locador2);
@@ -29,4 +29,4 @@ locador1 locador = new Locador(
     new DateTime(2000, 5, 10)
 );
 
-Console.WriteLine(cliente.Idade);
+Console.WriteLine(Locador.Idade);
