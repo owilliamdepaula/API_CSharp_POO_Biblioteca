@@ -4,7 +4,7 @@ public class Emprestimo
 {
     public ItemAcervo Item { get; private set; }
 
-    public Locador locador { get; private set; }
+    public Locador Locador { get; private set; }
 
     public DateTime DataEmprestimo { get; private set; } = DateTime.Today;
 

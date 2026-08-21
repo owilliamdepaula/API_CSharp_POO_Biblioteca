@@ -12,22 +12,13 @@ public enum ClassificacaoEtaria
 public class Dvd(string titulo, string autor, ClassificacaoEtaria classificacao) : ItemAcervo(titulo, autor)
 
 {
-    public ClassificacaoEtaria Classificacao { get; } = classificacao;
+    public override ClassificacaoEtaria Classificacao { get; } = classificacao;
 
     public override int PrazoDevolucao => 3;
 
     public override decimal MultaDiaAtrasado => 3m;
 
-    public bool PodeSerEmprestadoPara(Locador locador)
-    {
-        if (Classificacao == ClassificacaoEtaria.Livre)
-        {
-            return true;
-        }
-        int idade = CalcularIdade(locador.DataNascimento);
-        return idade >= (int)Classificacao;
-    }
-
+    
     public int CalcularIdade(DateTime dataNascimento)
     {
         DateTime hoje = DateTime.Today;
